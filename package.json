@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "next build --webpack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -22,7 +22,7 @@
     "lucide-react": "^0.468.0",
     "mind-ar": "^1.2.5",
     "motion": "^12.38.0",
-    "next": "15.0.0",
+    "next": "^15.1.0",
     "qrcode.react": "^4.2.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
