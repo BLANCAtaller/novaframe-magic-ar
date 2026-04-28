@@ -1,0 +1,13 @@
+﻿
+
+    Directorio: C:\Users\jmrod\Downloads\LUCY\novaframe\public\images\upload
+
+
+Mode                 LastWriteTime         Length Name                                                              
+----                 -------------         ------ ----                                                              
+-a----     06/04/2026  06:55 p. m.              0 actual_list.txt                                                   
+-a----     06/04/2026  06:31 p. m.              0 can_i_see_this.txt                                                
+-a----     06/04/2026  06:37 p. m.       11346041 Gemini_Generated_Image_8xhy88xhy88xhy88.png                       
+-a----     06/04/2026  06:39 p. m.       11315626 Gemini_Generated_Image_jaigcujaigcujaig.png                       
+
+

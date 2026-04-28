@@ -1,0 +1,76 @@
+{
+  "products": {
+    "bunny-ambition-wealth": {
+      "name": "Ambition Breeds Wealth // Money Bunny",
+      "description": "Símbolo de la ambición y el poder en el nuevo orden digital. Una crítica satírica a la opulencia con texturas de grado museo y contrastes de neón.",
+      "category": "Financias Mutadas",
+      "tags": ["MONEY", "BUNNY", "ZENITH", "STREET ART"]
+    },
+    "alice-wonderland-street": {
+      "name": "Alice // Wonderland Protocol",
+      "description": "La psicodelia clásica re-imaginada como un flujo de datos. Una pieza de alto impacto visual con capas de profundidad mutada y estética de graffiti futurista.",
+      "category": "Cultura Geek",
+      "tags": ["ALICE", "GLITCH", "PSYCHEDELIC"]
+    },
+    "wall-street-mcduck": {
+      "name": "Scrooge // Wall Street Assets",
+      "description": "Tío Rico en una composición de collage urbano que sintetiza el éxito financiero con la cultura pop callejera.",
+      "category": "Finanzas",
+      "tags": ["MONEY", "MOTIVATIONAL", "SCROOGE"]
+    },
+    "capital-is-king-v1": {
+      "name": "Capital Is King // Gold Protocol",
+      "description": "El manifiesto definitivo del éxito financiero. Oro puro sobre canvas de grano grueso para salones de juntas.",
+      "category": "Finanzas",
+      "tags": ["SUCCESS", "GOLD", "LUXURY"]
+    },
+    "savage-mona-lisa": {
+      "name": "Mona Lisa // Savage Disruptive",
+      "description": "Iconografía clásica destruida y reconstruida. La Mona Lisa original bajo el filtro de la rebelión urbana.",
+      "category": "Arte Abstracto",
+      "tags": ["GRAFFITI", "CLASSIC", "SAVAGE"]
+    },
+    "multiverse-series": {
+      "name": "The Multiverse Series // Protocol Evolution",
+      "description": "Una exploración técnica a través de 8 dimensiones paralelas de una misma obra maestra. Cada variación captura un flujo de datos único y una manifestación de personajes de diferentes realidades.",
+      "category": "Cultura Geek",
+      "tags": ["MULTIVERSE", "DIMENSION", "EVOLUTION", "STREET ART"]
+    }
+  },
+  "gallery": {
+    "alice-lego-steampunk": {
+      "name": "Lego Alice // Steampunk Reality",
+      "description": "Donde la construcción de bloques se encuentra con la ingeniería de vapor. Un mosaico ultra-detallado que desafía la percepción de la materia física.",
+      "category": "Industrial / Fantasy"
+    },
+    "napoleon-rebellion": {
+      "name": "Napoleon // Empire & Rebellion",
+      "description": "La figura del conquistador histórico bajo el prisma de la rebelión digital contemporánea. Fuerza, orden y caos en un solo lienzo de alta fidelidad.",
+      "category": "Historical / Mutation"
+    },
+    "bunny-neon-edition": {
+      "name": "Money Bunny // Neon Overdrive",
+      "description": "Edición especial del protocolo de ambición con saturación de color extrema para espacios con iluminación controlada.",
+      "category": "Finanza Mutada"
+    }
+  },
+  "tech_specs": {
+    "pbn-technique": {
+      "name": "PBN Scan Algorithm",
+      "description": "Visualización del proceso de vectorización y segmentación cromática del protocolo Paint-by-Numbers."
+    },
+    "canvas-texture": {
+      "name": "Fiber Integrity Scan",
+      "description": "Análisis molecular del lienzo de algodón de 400g/m² con imprimación de grado museo."
+    },
+    "frame-structure": {
+      "name": "Structural Framework",
+      "description": "Planimetría del bastidor de pino reforzado con juntas de ingeniería para tensión perpetua."
+    },
+    "ink-saturation": {
+      "name": "Chromatic Saturation Map",
+      "description": "Mapa de calor de la inyección de tinta de alta gama, asegurando fidelidad del 99.8% al archivo original."
+    }
+  }
+}
+

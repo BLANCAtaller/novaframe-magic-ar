@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Orders Collection ──
+    match /orders/{orderId} {
+      allow create: if true;
+      allow read, update, delete: if
+        request.auth != null &&
+        request.auth.token.email == "jesusrodriguez7129@gmail.com";
+    }
+
+    // ── Support Requests ──
+    match /support_requests/{requestId} {
+      allow create: if true;
+      allow read, update, delete: if
+        request.auth != null &&
+        request.auth.token.email == "jesusrodriguez7129@gmail.com";
+    }
+
+    // ── Default: deny all other collections ──
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

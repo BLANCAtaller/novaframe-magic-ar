@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#c026d3"/>
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="url(#glow)" stroke-width="1.5" opacity="0.6"/>
+  <!-- N Mark -->
+  <g filter="url(#neon)">
+    <path d="M18 48V16L32 36L46 16V48" stroke="url(#glow)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <!-- Corner Brackets -->
+  <path d="M8 18V8H18" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M46 8H56V18" stroke="#c026d3" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M56 46V56H46" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M18 56H8V46" stroke="#c026d3" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+</svg>

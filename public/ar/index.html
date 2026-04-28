@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>NovaFrame — Dimensiones Suspendidas</title>
+
+  <!-- MindAR + A-Frame CDN (Image Tracking) -->
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      background: #000; 
+      overflow: hidden; 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════ LOADING OVERLAY ═══════════ */
+    #loading-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #030303;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-ring {
+      width: 80px;
+      height: 80px;
+      border: 3px solid rgba(157, 78, 221, 0.15);
+      border-top-color: #9d4edd;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 24px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loader-title {
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+    }
+    .loader-subtitle {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(157, 78, 221, 0.6);
+      margin-top: 8px;
+    }
+
+    /* ═══════════ HUD OVERLAY ═══════════ */
+    #hud-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .hud-corner {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: rgba(157, 78, 221, 0.4);
+    }
+    .hud-tl { top: 16px; left: 16px; border-top: 2px solid; border-left: 2px solid; }
+    .hud-tr { top: 16px; right: 16px; border-top: 2px solid; border-right: 2px solid; }
+    .hud-bl { bottom: 16px; left: 16px; border-bottom: 2px solid; border-left: 2px solid; }
+    .hud-br { bottom: 16px; right: 16px; border-bottom: 2px solid; border-right: 2px solid; }
+
+    .hud-status {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(157, 78, 221, 0.2);
+      border-radius: 999px;
+      transition: all 0.5s ease;
+    }
+    .hud-status.tracking {
+      border-color: rgba(30, 215, 96, 0.4);
+    }
+
+    .hud-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9d4edd;
+      animation: pulse-dot 2s ease infinite;
+    }
+    .hud-dot.tracking {
+      background: #1ed760;
+      animation: pulse-dot-green 1s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(157,78,221,0.6); }
+      50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(157,78,221,0); }
+    }
+    @keyframes pulse-dot-green {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(30,215,96,0.6); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(30,215,96,0); }
+    }
+
+    .hud-label {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+    }
+
+    .hud-instructions {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      padding: 12px 24px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      transition: opacity 0.5s ease;
+      max-width: 280px;
+    }
+    .hud-instructions.hidden { opacity: 0; pointer-events: none; }
+
+    .hud-instructions h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .hud-instructions p {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* Close Button */
+    .hud-close {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: all;
+      padding: 10px 28px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .hud-close:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    /* NovaFrame Branding */
+    .hud-brand {
+      position: absolute;
+      bottom: 24px;
+      right: 16px;
+      font-size: 8px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ LOADING SCREEN ═══════════ -->
+  <div id="loading-overlay">
+    <div class="loader-ring"></div>
+    <div class="loader-title">Dimensiones Suspendidas</div>
+    <div class="loader-subtitle">Inicializando motor de tracking…</div>
+  </div>
+
+  <!-- ═══════════ HUD OVERLAY ═══════════ -->
+  <div id="hud-overlay">
+    <div class="hud-corner hud-tl"></div>
+    <div class="hud-corner hud-tr"></div>
+    <div class="hud-corner hud-bl"></div>
+    <div class="hud-corner hud-br"></div>
+
+    <div class="hud-status" id="hud-status">
+      <div class="hud-dot" id="hud-dot"></div>
+      <span class="hud-label" id="hud-label">Buscando obra…</span>
+    </div>
+
+    <div class="hud-instructions" id="hud-instructions">
+      <h3>Apunta hacia tu cuadro</h3>
+      <p>Centra la obra NovaFrame en la pantalla para activar la dimensión oculta</p>
+    </div>
+
+    <button class="hud-close" onclick="window.history.back()">Cerrar Visor</button>
+    <div class="hud-brand">NovaFrame™</div>
+  </div>
+
+  <!-- ═══════════ AR SCENE ═══════════ -->
+  <a-scene
+    mindar-image="imageTargetSrc: ./targets/demo.mind; autoStart: true; uiLoading: no; uiScanning: no; uiError: no; filterMinCF: 0.0001; filterBeta: 1000; warmupTolerance: 5; missTolerance: 5;"
+    color-space="sRGB"
+    renderer="colorManagement: true; physicallyCorrectLights: true;"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+  >
+    <!-- Camera Feed -->
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Target Anchor: The virtual layer that sticks to the physical art -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <!-- Video Plane: Overlay on top of the detected image -->
+      <a-video
+        id="ar-video"
+        src="#ar-video-asset"
+        position="0 0 0.01"
+        rotation="0 0 0"
+        width="1"
+        height="0.75"
+        opacity="0.95"
+        material="shader: flat; side: double;"
+      ></a-video>
+
+      <!-- Glow Border Effect -->
+      <a-plane
+        position="0 0 0.005"
+        width="1.04"
+        height="0.79"
+        material="color: #9d4edd; opacity: 0.15; transparent: true; shader: flat;"
+      ></a-plane>
+    </a-entity>
+
+    <!-- Assets -->
+    <a-assets>
+      <video
+        id="ar-video-asset"
+        src="./assets/demo-video.mp4"
+        preload="auto"
+        loop="true"
+        crossorigin="anonymous"
+        playsinline
+        webkit-playsinline
+      ></video>
+    </a-assets>
+  </a-scene>
+
+  <script>
+    // ═══════════ AR LIFECYCLE CONTROLLER ═══════════
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const hudStatus = document.getElementById('hud-status');
+    const hudDot = document.getElementById('hud-dot');
+    const hudLabel = document.getElementById('hud-label');
+    const hudInstructions = document.getElementById('hud-instructions');
+    const arVideo = document.getElementById('ar-video-asset');
+
+    let isTracking = false;
+
+    // Wait for MindAR to be ready
+    const sceneEl = document.querySelector('a-scene');
+    
+    sceneEl.addEventListener('renderstart', () => {
+      // Engine is ready, hide loading
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+      }, 1500);
+    });
+
+    // Target Found — The "Magic Moment"
+    const targetEntity = document.querySelector('[mindar-image-target]');
+    
+    targetEntity.addEventListener('targetFound', () => {
+      isTracking = true;
+      
+      // Update HUD
+      hudStatus.classList.add('tracking');
+      hudDot.classList.add('tracking');
+      hudLabel.textContent = 'Dimensión Activa';
+      hudInstructions.classList.add('hidden');
+
+      // Play video
+      arVideo.play().catch(e => {
+        console.log('Video autoplay blocked, user interaction needed:', e);
+      });
+    });
+
+    // Target Lost — Dimension collapses
+    targetEntity.addEventListener('targetLost', () => {
+      isTracking = false;
+
+      // Update HUD
+      hudStatus.classList.remove('tracking');
+      hudDot.classList.remove('tracking');
+      hudLabel.textContent = 'Buscando obra…';
+      hudInstructions.classList.remove('hidden');
+
+      // Pause video
+      arVideo.pause();
+    });
+
+    // Handle first user interaction for video autoplay policy
+    document.addEventListener('click', () => {
+      if (isTracking && arVideo.paused) {
+        arVideo.play();
+      }
+    }, { once: true });
+
+    // Handle errors gracefully
+    sceneEl.addEventListener('arError', (e) => {
+      hudLabel.textContent = 'Error de cámara';
+      console.error('MindAR Error:', e);
+    });
+  </script>
+
+</body>
+</html>

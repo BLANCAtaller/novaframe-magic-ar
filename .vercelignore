@@ -1,0 +1,6 @@
+# Exclude heavy folders from Vercel deployments
+public/images/database_backup
+/node_modules
+/.next
+/out
+.vercel

@@ -1,0 +1,26 @@
+{
+  "name": "NovaFrame — Cuadros Premium en Canvas y Lona HD",
+  "short_name": "NovaFrame",
+  "description": "Cuadros decorativos premium impresos en lona HD y canvas de alta fidelidad. Diseños únicos con envío a todo México.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "lifestyle"],
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/branding/logo_v3.webp",
+      "type": "image/webp",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
