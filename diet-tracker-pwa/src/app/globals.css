@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #10b981;
+  --color-brand-light: #d1fae5;
+  --color-brand-dark: #047857;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
