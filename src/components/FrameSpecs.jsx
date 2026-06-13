@@ -35,14 +35,17 @@ const ColorSwatch = ({ color, name, hex, delay }) => (
     transition={{ delay, duration: 0.4 }}
     className="flex flex-col items-center gap-2 group"
   >
-    <div className={cn(
-      "w-12 h-12 rounded-full border-2 transition-transform group-hover:scale-110 shadow-lg",
-      hex === 'madera' ? "bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')] bg-[#8b5a2b] border-[#5c3a18]" :
-      hex === 'blanco' ? "bg-white border-gray-200" :
-      hex === 'negro' ? "bg-black border-gray-800" :
-      hex === 'plateado' ? "bg-gradient-to-br from-gray-300 to-gray-500 border-gray-400" :
-      "bg-gradient-to-br from-yellow-300 to-yellow-600 border-yellow-500"
-    )} />
+    <div
+      className={cn(
+        "w-12 h-12 rounded-full border-2 transition-transform group-hover:scale-110 shadow-lg",
+        hex === 'madera' ? "bg-[#8b5a2b] border-[#5c3a18]" :
+        hex === 'blanco' ? "bg-white border-gray-200" :
+        hex === 'negro' ? "bg-black border-gray-800" :
+        hex === 'plateado' ? "bg-gradient-to-br from-gray-300 to-gray-500 border-gray-400" :
+        "bg-gradient-to-br from-yellow-300 to-yellow-600 border-yellow-500"
+      )}
+      style={hex === 'madera' ? { backgroundImage: "url('https://www.transparenttextures.com/patterns/wood-pattern.png')" } : undefined}
+    />
     <span className="text-[10px] font-mono text-white/50 uppercase tracking-widest group-hover:text-neon-cyan transition-colors">{name}</span>
   </motion.div>
 );
@@ -120,16 +123,19 @@ export default function FrameSpecs({ selectedColor, onSelectColor }) {
                     className="flex flex-col items-center gap-2 group cursor-pointer"
                     onClick={() => onSelectColor?.(color.id)}
                   >
-                    <div className={cn(
-                      "w-12 h-12 rounded-full border-2 transition-transform group-hover:scale-110 shadow-lg relative flex items-center justify-center",
-                      color.id === 'ninguno' ? "bg-transparent border-dashed border-white/20" :
-                      color.id === 'madera' ? "bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')] bg-[#8b5a2b] border-[#5c3a18]" :
-                      color.id === 'blanco' ? "bg-white border-gray-200" :
-                      color.id === 'negro' ? "bg-black border-gray-800" :
-                      color.id === 'plata' ? "bg-gradient-to-br from-gray-300 to-gray-500 border-gray-400" :
-                      "bg-gradient-to-br from-yellow-300 to-yellow-600 border-yellow-500",
-                      selectedColor === color.id && "ring-2 ring-neon-cyan ring-offset-4 ring-offset-black"
-                    )}>
+                    <div
+                      className={cn(
+                        "w-12 h-12 rounded-full border-2 transition-transform group-hover:scale-110 shadow-lg relative flex items-center justify-center",
+                        color.id === 'ninguno' ? "bg-transparent border-dashed border-white/20" :
+                        color.id === 'madera' ? "bg-[#8b5a2b] border-[#5c3a18]" :
+                        color.id === 'blanco' ? "bg-white border-gray-200" :
+                        color.id === 'negro' ? "bg-black border-gray-800" :
+                        color.id === 'plata' ? "bg-gradient-to-br from-gray-300 to-gray-500 border-gray-400" :
+                        "bg-gradient-to-br from-yellow-300 to-yellow-600 border-yellow-500",
+                        selectedColor === color.id && "ring-2 ring-neon-cyan ring-offset-4 ring-offset-black"
+                      )}
+                      style={color.id === 'madera' ? { backgroundImage: "url('https://www.transparenttextures.com/patterns/wood-pattern.png')" } : undefined}
+                    >
                       {color.id === 'ninguno' && <X className="text-white/20" size={14} />}
                       {selectedColor === color.id && (
                         <motion.div 

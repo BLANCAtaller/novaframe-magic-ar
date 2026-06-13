@@ -95,7 +95,7 @@ const CategoryGrid = () => {
                   />
                   
                   {/* Canvas Texture Overlay */}
-                  <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/canvas-fabric.png')] group-hover:opacity-40 transition-opacity" />
+                  <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay group-hover:opacity-40 transition-opacity" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/canvas-fabric.png')" }} />
                   
                   {/* Vignette & Gradients */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />

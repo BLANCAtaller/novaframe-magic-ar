@@ -105,7 +105,7 @@ export default function RomanticCustomizer() {
         />
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }} />
 
       {/* 2. LAYER TEXTO GIGANTE (KINETIC TYPOGRAPHY) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none overflow-hidden z-0 flex flex-col items-center justify-center h-full">
@@ -173,7 +173,7 @@ export default function RomanticCustomizer() {
                               initial={{ rotateZ: 15, y: 50, x: 20 }} animate={{ rotateZ: -5, y: 10, x: -10 }} transition={{ duration: 1.5, ease: "easeOut" }}
                               className="absolute inset-0 m-4 bg-zinc-300 shadow-[2px_10px_20px_rgba(0,0,0,0.15)] rounded-sm overflow-hidden"
                             >
-                               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center mix-blend-luminosity opacity-40 transition-opacity hover:opacity-100 hover:mix-blend-normal duration-1000" />
+                               <div className="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-40 transition-opacity hover:opacity-100 hover:mix-blend-normal duration-1000" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop')" }} />
                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                             </motion.div>
                             {/* Polaroid 2 (Front) */}
@@ -182,7 +182,7 @@ export default function RomanticCustomizer() {
                               className="absolute top-10 left-6 right-8 bottom-12 bg-white p-2 sm:p-3 pb-8 sm:pb-12 shadow-[0_20px_40px_rgba(0,0,0,0.3)] z-10"
                             >
                                <div className="w-full h-full bg-zinc-200 relative overflow-hidden">
-                                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center grayscale mix-blend-multiply" />
+                                 <div className="absolute inset-0 bg-cover bg-center grayscale mix-blend-multiply" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=600&auto=format&fit=crop')" }} />
                                </div>
                                <div className="absolute bottom-2 left-0 w-full text-center font-serif text-[8px] sm:text-[10px] text-zinc-400 tracking-widest italic">P A R I S</div>
                             </motion.div>
@@ -223,7 +223,8 @@ export default function RomanticCustomizer() {
                             {/* The Photo */}
                             <div className="w-full aspect-square bg-zinc-100 mt-2 sm:mt-3 mb-2 sm:mb-3 relative overflow-hidden shadow-inner border border-zinc-100">
                                <motion.div 
-                                 className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center mix-blend-multiply opacity-90 transition-transform duration-[10s] hover:scale-110"
+                                 className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-90 transition-transform duration-[10s] hover:scale-110"
+                                 style={{ backgroundImage: "url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=600&auto=format&fit=crop')" }}
                                />
                             </div>
 
@@ -330,7 +331,8 @@ export default function RomanticCustomizer() {
                                 <motion.div 
                                   animate={{ scale: [1, 1.2, 1] }} 
                                   transition={{ duration: 4, repeat: Infinity }}
-                                  className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516528387618-afa90b13e000?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center opacity-50" 
+                                  className="absolute inset-0 bg-cover bg-center opacity-50"
+                                  style={{ backgroundImage: "url('https://images.unsplash.com/photo-1516528387618-afa90b13e000?q=80&w=600&auto=format&fit=crop')" }}
                                 />
                                 <div className="absolute inset-0 bg-black/40" />
                               </div>

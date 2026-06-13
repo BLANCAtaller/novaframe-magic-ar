@@ -30,7 +30,7 @@ const MATERIALS = [
 
 const FRAMES = [
   { id: 'ninguno', name: 'Sin Marco', hex: 'transparent', class: "bg-transparent border-dashed border-white/40 flex items-center justify-center after:content-['✕'] after:text-[10px] after:text-white/40" },
-  { id: 'madera', name: 'Madera', hex: '#8b5a2b', class: "bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')] bg-[#8b5a2b] border-[#5c3a18]" },
+  { id: 'madera', name: 'Madera', hex: '#8b5a2b', class: "bg-[#8b5a2b] border-[#5c3a18]", bgUrl: "url('https://www.transparenttextures.com/patterns/wood-pattern.png')" },
   { id: 'blanco', name: 'Blanco', hex: '#ffffff', class: "bg-white border-gray-200" },
   { id: 'negro', name: 'Negro', hex: '#000000', class: "bg-black border-gray-800" },
   { id: 'plata', name: 'Plata', hex: '#9ca3af', class: "bg-gradient-to-br from-gray-300 to-gray-500 border-gray-400" },
@@ -551,7 +551,7 @@ export default function ConfiguratorLayout({ product }) {
                           )}
                           title={f.name}
                         >
-                           <div className={cn("w-full h-full rounded-full", f.class)} />
+                           <div className={cn("w-full h-full rounded-full", f.class)} style={f.bgUrl ? { backgroundImage: f.bgUrl } : undefined} />
                         </button>
                       ))}
                    </div>

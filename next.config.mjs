@@ -23,7 +23,8 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      'three': path.resolve(__dirname, 'src/three-compat.js'),
+      // 'three$' (with $) matches only the exact 'three' import, not sub-paths like 'three/src/...'
+      'three$': path.resolve(__dirname, 'src/three-compat.js'),
     };
 
     if (!isServer) {
@@ -32,6 +33,7 @@ const nextConfig = {
         fs: false,
       };
     }
+
     return config;
   },
 };

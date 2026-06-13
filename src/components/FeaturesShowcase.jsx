@@ -200,7 +200,7 @@ export default function FeaturesShowcase() {
                       }}
                       className="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-white/5 backdrop-blur-md border border-pink-500/30 rounded-sm shadow-[0_0_20px_rgba(244,114,182,0.15)] overflow-hidden"
                     >
-                      <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1552168324-d612d77725e3?q=80&w=200&auto=format&fit=crop')] bg-cover bg-center mix-blend-screen" />
+                      <div className="absolute inset-0 opacity-80 bg-cover bg-center mix-blend-screen" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1552168324-d612d77725e3?q=80&w=200&auto=format&fit=crop')" }} />
                     </motion.div>
                  ))}
                  {/* Connecting lines */}
@@ -412,7 +412,7 @@ export default function FeaturesShowcase() {
                   {/* CAPA 1: CUADRO FÍSICO (Fondo) - A la DERECHA */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ transformStyle: 'preserve-3d', transform: `translateX(${isMobile ? '180px' : '350px'})` }}>
                      <div className="relative w-64 h-[400px] md:w-80 md:h-[500px] bg-zinc-900/40 border-l border-zinc-800/50 shadow-[0_50px_100px_rgba(0,0,0,0.5)]" style={{ transform: `translateZ(${isMobile ? '-300px' : '-150px'}) rotateY(${isMobile ? '-10deg' : '-30deg'})` }}>
-                        <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
+                        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')" }} />
                         <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10" />
                      </div>
 
